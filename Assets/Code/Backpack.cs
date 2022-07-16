@@ -13,18 +13,19 @@ public class Backpack : MonoBehaviour
 
     private Stack<GameObject> _objects;
     private Vector3 _nextPos;
-
+    private Color SelfColor;
     private void Start()
     {
         _objects = new Stack<GameObject>();
         _nextPos = backpackStartPos;
+        SelfColor = _objectMat.color;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         Material material = other.gameObject.GetComponent<MeshRenderer>().material;
         Color color = material.color;
-        if (color.Equals(_objectMat.color))
+        if (color.Equals(SelfColor))
         {
             Destroy(other.gameObject.GetComponent<Collider>());
             PushObject(other.gameObject);

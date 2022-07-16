@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class BrickSpawner : MonoBehaviour
 {
-    private const int maxBricks = 20;
+    private const int maxBricks = 10;
     private const float spawnCooldown = 2f;
 
     [SerializeField] private GameObject _brickPrefab;
@@ -20,14 +20,16 @@ public class BrickSpawner : MonoBehaviour
         _collider = GetComponent<Collider>();
         _bricks = new List<GameObject>(maxBricks);
         _spawner = GetComponent<Transform>();
-        _spawnHeight = _spawner.position.y + (_spawner.localScale.y / 6);
+        _spawnHeight = _spawner.position.y + (_spawner.localScale.y / 8);
 
         SpawnBricks(maxBricks);
     }
-
+   
+        
     private void Update()
     {
         CheckBricks();
+        //StartCoroutine(ReSpawBrick1());
         if (Time.time > _timer && _bricks.Count < maxBricks / 2)
         {
             _timer = Time.time + spawnCooldown;
@@ -46,7 +48,15 @@ public class BrickSpawner : MonoBehaviour
             }
         }
     }
-
+    //IEnumerator ReSpawBrick1()
+    //{
+    //    yield return new WaitForSeconds(2);
+    //    if (_bricks.Count < maxBricks / 2)
+    //    {
+    //        SpawnBricks(3);
+    //    }
+    //    StartCoroutine(ReSpawBrick1());
+    //}
     private void SpawnBricks(int count)
     {
         for (int i = 0; i < count; i++)
