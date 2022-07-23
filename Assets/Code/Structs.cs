@@ -15,11 +15,13 @@ public struct TouchInfo
     public Vector2 CurrentPos;
 }
 
-public static class cmpTAG
+public static class CmpTag
 {
 
     public static string TAG_Finish = "WIN";
-  
 
+    public const string ANIM_ACTION = "Action";
+    public const int IDLE_ANIM = 0;
+    public const int RUN_ANIM = 1;
 
 }

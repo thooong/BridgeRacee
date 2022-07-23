@@ -14,6 +14,8 @@ public class BrickSpawner : MonoBehaviour
     private List<GameObject> _bricks;
     private float _spawnHeight;
     private float _timer;
+    public Animator anim;
+    protected int animState;
 
     private void Start()
     {
@@ -23,9 +25,14 @@ public class BrickSpawner : MonoBehaviour
         _spawnHeight = _spawner.position.y + (_spawner.localScale.y / 8);
 
         SpawnBricks(maxBricks);
+        Debug.Log("gameplay_start_hight");
+
     }
-   
-        
+    public Camera Cam;
+      private void Raycast()
+    {
+
+    }
     private void Update()
     {
         CheckBricks();
@@ -66,4 +73,6 @@ public class BrickSpawner : MonoBehaviour
             _bricks.Add(Instantiate(_brickPrefab, startPos, Quaternion.identity));
         }
     }
+
+    
 }
